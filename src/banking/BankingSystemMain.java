@@ -2,16 +2,16 @@ package banking;
 
 import java.util.Scanner;
 
-public class BankingSystemMain {
+public class BankingSystemMain implements Menu {
 	
 	public static Scanner scan = new Scanner(System.in);
 	
 	public static void showMenu() {
-		System.out.println("######## 메뉴를 입력하세요 ########");
-		System.out.print("1.계좌개설 ");
-		System.out.println("2.입금 ");
-		System.out.print("3.출금 ");
-		System.out.println("4.전체계좌정보출력 ");
+		System.out.println("-----Menu-----");
+		System.out.println("1.계좌개설 ");
+		System.out.println("2.입 금 ");
+		System.out.println("3.출 금 ");
+		System.out.println("4.계좌정보출력 ");
 		System.out.print("5.프로그램종료 ");
 		
 	}
@@ -30,19 +30,19 @@ public class BankingSystemMain {
 			scan.nextLine();
 			
 			switch(choice) {
-			case 1:
+			case MAKE:
 				manager.makeAccount();
 				break;
-			case 2:
+			case DEPOSIT:
 				manager.depositMoney();
 				break;
-			case 3:
+			case WITHDRAW:
 				manager.withdrawMoney();
 				break;
-			case 4:
+			case INQUIRE:
 				manager.showAccInfo();
 				break;
-			case 5:
+			case EXIT:
 				System.out.println("프로그램종료");
 				return;
 			}

@@ -27,24 +27,70 @@ public class AccountManager {
 		String iName;
 		int iBalance;
 		
+		int iInterest;
+		int iExtraInterest;
+		String iCreditRate;
+		
 		//정보 3가지를 입력받음
-		System.out.println("계좌번호:");
-			iAccountNum = BankingSystemMain.scan.nextLine();
-		System.out.println("이름:");
-			iName = BankingSystemMain.scan.nextLine();
-		System.out.println("잔액:");
-			iBalance = BankingSystemMain.scan.nextInt();
+		System.out.println("***신규계좌개설***");
+		System.out.println("-----계좌선택-----");
+		System.out.println("1. 보통계좌");
+		System.out.println("2. 신용신뢰계좌");
+		
+		int choice = BankingSystemMain.scan.nextInt();
+	    BankingSystemMain.scan.nextLine();
+		
+		if (choice==1) {
 			
-		// Account 인스턴스 생성
-		Account ac =
-			new Account(iAccountNum, iName, iBalance);
+			System.out.println("계좌번호:");
+			iAccountNum = BankingSystemMain.scan.nextLine();
+			System.out.println("이름:");
+			iName = BankingSystemMain.scan.nextLine();
+			System.out.println("잔액:");
+			iBalance = BankingSystemMain.scan.nextInt();
+			System.out.println("기본이자%(정수형태로 입력):");
+			iInterest = BankingSystemMain.scan.nextInt();
+			// Account 인스턴스 생성
+			NormalAccount ac =
+				new NormalAccount(iAccountNum, iName,
+									iBalance, iInterest);
+			
+			accounts[numOfaccount++] = ac;
+		}
+		else if (choice==2) {
+			System.out.println("계좌번호:");
+			iAccountNum = BankingSystemMain.scan.nextLine();
+			System.out.println("이름:");
+			iName = BankingSystemMain.scan.nextLine();
+			System.out.println("잔액:");
+			iBalance = BankingSystemMain.scan.nextInt();
+			System.out.println("기본이자%(정수형태로 입력):");
+			iInterest = BankingSystemMain.scan.nextInt();
+			
+			BankingSystemMain.scan.nextLine(); //줄바꿈오류땜에 추가
+			
+			System.out.println("신용등급(A,B,C등급):");
+			iCreditRate = BankingSystemMain.scan.nextLine();
+			if (iCreditRate.equals("A")) {
+				iExtraInterest = 7;
+			}
+			else if (iCreditRate.equals("B")) {
+				iExtraInterest = 4;
+			}
+			else {
+				iExtraInterest = 2;
+			}
+			// Account 인스턴스 생성
+			HighCreditAccount ac = new HighCreditAccount
+					(iAccountNum, iName, 
+						iBalance, iInterest,
+						iExtraInterest, iCreditRate);
+			
+			accounts[numOfaccount++] = ac;
+		}
+			
 		
-		/*
-		인스턴스 참조값을 배열에 추가. 카운트용 변수를 후위증가 시켜 0번
-		인덱스에 먼저 입력된 후 1증가하게된다. */
-		accounts[numOfaccount++] = ac;
-		
-		System.out.println("##계좌정보 입력이 완료되었습니다##");	
+		System.out.println("계좌개설이 완료되었습니다.");	
 		
 	};
 	

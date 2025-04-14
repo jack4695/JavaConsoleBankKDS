@@ -60,7 +60,7 @@ public class Account {
 	}
 
 
-	//멤버변수 출력용 메서드
+	// 출력용 메서드
 	public void showAccountData() {
 		System.out.println("계좌번호:"+ accountNum);
 		System.out.println("이름:"+ name);
