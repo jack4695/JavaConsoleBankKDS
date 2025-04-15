@@ -12,10 +12,11 @@ public class NormalAccount extends Account {
 		this.interest = interest;
 	}
 	
+	
 	@Override
 	public int deposit(int money) {
 		
-		balance = (balance + (balance * interest) + money); 
+		balance = (balance + (balance * interest)/100 + money); 
 	    return balance;   // 입금 후 잔액 반환
 	}
 	

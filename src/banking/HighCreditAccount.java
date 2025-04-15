@@ -9,7 +9,7 @@ public class HighCreditAccount extends Account {
 	
 	public HighCreditAccount(String accountNum, String name,
 		int balance, int interest,
-		int extraInterest, String creditRateing) {
+		int extraInterest, String creditRate) {
 		
 		super(accountNum, name, balance);
 		
@@ -22,8 +22,8 @@ public class HighCreditAccount extends Account {
 	@Override
 	public int deposit(int money) {
 		
-		balance = (balance + (balance * interest) 
-						+ (balance * extraInterest) + money); 
+		balance = (balance + (balance * interest)/100 
+						+ (balance * extraInterest)/100 + money); 
 	    return balance;   // 입금 후 잔액 반환
 	}
 	
@@ -43,7 +43,7 @@ public class HighCreditAccount extends Account {
 	public void showAccountData() {
 		super.showAccountData();
 		System.out.println("기본이자:"+ interest);
-		System.out.println("신용등급:"+ creditRate);
+		System.out.println("추가이자:"+ creditRate);
 	}
 
 }

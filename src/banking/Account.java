@@ -1,6 +1,6 @@
 package banking;
 
-public class Account {
+public abstract class Account {
 	
 	String accountNum;
 	String name;
@@ -42,6 +42,13 @@ public class Account {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
+	
+	// toString 오버라이드
+		@Override
+		public String toString() {
+			return "Account [계좌번호=" + accountNum +
+					", 이름=" + name + ", 잔고=" + balance + "]";
+		}
 	
 	public int deposit(int money) {
 		balance += money; // 기존 balance에 입금 금액 추가
