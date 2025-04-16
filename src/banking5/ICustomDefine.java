@@ -1,14 +1,16 @@
-package banking;
+package banking5;
 
 public interface ICustomDefine {
 	
+	//메뉴
 	int MAKE = 1,
 		DEPOSIT = 2,
 		WITHDRAW = 3,
 		INQUIRE = 4,
-		EXIT = 5;
+		REMOVE = 5,
+		EXIT = 6;
 	
-	
+	//고객 등급 (추가이자)
 	int A = 7,
 		B = 4,
 		C = 2 ;

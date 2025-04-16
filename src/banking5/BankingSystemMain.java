@@ -1,4 +1,4 @@
-package banking;
+package banking5;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,12 +13,16 @@ public class BankingSystemMain {
 		System.out.println("2.입 금 ");
 		System.out.println("3.출 금 ");
 		System.out.println("4.계좌정보출력 ");
-		System.out.print("5.프로그램종료 ");
+		System.out.println("5.계좌정보삭제 ");
+		System.out.print("6.프로그램종료 ");
 	}
 
 	public static void main(String[] args) {
 		
 		AccountManager manager = new AccountManager(50);
+		
+		//역직렬화 (파일 불러오기)
+		manager.loadAccount();
 		
 		/*무한루프로 while문 작성.*/
 		while(true) {
@@ -30,7 +34,7 @@ public class BankingSystemMain {
 				//입력을 위한 버퍼(Buffer) 제거
 				scan.nextLine();
 				
-				if (choice < 1 || choice > 5) {
+				if (choice < 1 || choice > 6) {
                     throw new MenuSelectException();
                 }
 				
@@ -47,7 +51,12 @@ public class BankingSystemMain {
 				case ICustomDefine.INQUIRE:
 					manager.showAccInfo();
 					break;
+				case ICustomDefine.REMOVE:
+					manager.removeAccount();
+					break;
 				case ICustomDefine.EXIT:
+					//직렬화 (파일 저장하기)
+					manager.saveAccount();
 					System.out.println("프로그램종료");
 					return;
 				}

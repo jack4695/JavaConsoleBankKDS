@@ -1,6 +1,9 @@
-package banking;
+package banking6;
 
-public abstract class Account {
+import java.io.Serializable;
+import java.util.Objects;
+
+public abstract class Account implements Serializable {
 	
 	String accountNum;
 	String name;
@@ -64,6 +67,27 @@ public abstract class Account {
 			System.out.println("잔액이 부족합니다.");
 		}
 		return -1;    //이해는 안가지만 일단 해봄. (출금실패 에러값)
+	}
+	
+	@Override
+	public int hashCode() {
+		int hCode = Objects.hash(this.accountNum);
+		return hCode;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		//매개변수로 전달된 객체를 다운캐스팅 한다.
+		Account ac = (Account) obj;
+		/* 멤버변수를 비교하여 동일한 객체 발견시 true 반환.
+		이때, set에는 저장되지 않는다.
+		발견하지 못하면 false반환. 이때는 set에 저장된다. */
+		if (ac.accountNum.equals(this.accountNum)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 
