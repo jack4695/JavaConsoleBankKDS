@@ -248,7 +248,7 @@ public class AccountManager {
 		try {
 			ObjectOutputStream out =
 				new ObjectOutputStream(
-						new FileOutputStream("AccountInfo.obj")
+						new FileOutputStream("src/banking6/AccountInfo.obj")
 						);
 			out.writeObject(accounts);
 			System.out.println("AccountInfo.obj 파일로 저장되었습니다.");
@@ -265,7 +265,7 @@ public class AccountManager {
 		
 		try {ObjectInputStream in =
 				new ObjectInputStream(
-						new FileInputStream("AccountInfo.obj")
+						new FileInputStream("src/banking6/AccountInfo.obj")
 						);
 			accounts = (HashSet<Account>) in.readObject();
 			System.out.println("AccountInfo.obj 복원완료");
@@ -289,11 +289,37 @@ public class AccountManager {
 		this.accounts = accounts;
 	}
 	
+	private AutoSaver autoSaver;
+	
 	public void saveOption() {
 		System.out.println("저장옵션을 선택하세요.");
 		System.out.println("1.자동저장On / 2.자동저장Off");
 		System.out.print("선택: ");
 		
+		int choice = BankingSystemMain.scan.nextInt();
+		BankingSystemMain.scan.nextLine();
+		
+		if (choice == 1) {
+			if (autoSaver != null && autoSaver.isAlive()) {
+				System.out.println("이미 자동저장이 실행중입니다.");
+			}
+			else {
+				autoSaver = new AutoSaver(this);
+				autoSaver.start();
+				System.out.println("자동저장을 시작합니다.");
+			}
+		}
+		else if (choice == 2) {
+			if (autoSaver != null && autoSaver.isAlive()) {
+				autoSaver.interrupt();
+			}
+			else {
+				System.out.println("자동저장이 실행중이지 않습니다.");
+			}
+		}
+		else {
+			System.out.println("잘못입력하셨습니다.");
+		}
 	}
 	
 	

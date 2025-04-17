@@ -35,7 +35,7 @@ public class BankingSystemMain {
 				//입력을 위한 버퍼(Buffer) 제거
 				scan.nextLine();
 				
-				if (choice < 1 || choice > 6) {
+				if (choice < 1 || choice > 7) {
                     throw new MenuSelectException();
                 }
 				

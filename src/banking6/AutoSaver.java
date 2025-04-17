@@ -17,7 +17,6 @@ public class AutoSaver extends Thread {
 	}
 
 
-
 	@Override
 	public void run() {
 		
@@ -28,6 +27,7 @@ public class AutoSaver extends Thread {
 			}
 			catch (InterruptedException e) {
 				System.out.println("*** 자동저장을 종료합니다. ***");
+				break;
 			}
 		}
 	}
@@ -35,14 +35,14 @@ public class AutoSaver extends Thread {
 	public void saveToFile() {
 		try (PrintWriter out =
 				new PrintWriter(
-						new FileWriter("AutoSaveAccount.txt"))){
+						new FileWriter("src/banking6/AutoSaveAccount.txt"))){
 			Iterator<Account> it = 
 						manager.getAccounts().iterator();
 			while (it.hasNext()) {
 				Account acc = it.next();
 				out.println(acc);
 			}
-			System.out.println("*** 자동저장 완료 ***");
+			System.out.println("계좌정보가 텍스트로 자동저장되었습니다.");
 		}
 		catch (IOException e) {
 			e.getStackTrace();
