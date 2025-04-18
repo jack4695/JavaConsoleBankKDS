@@ -35,7 +35,7 @@ public class AutoSaver extends Thread {
 	public void saveToFile() {
 		try (PrintWriter out =
 				new PrintWriter(
-						new FileWriter("src/banking7/AutoSaveAccount.txt"))){
+						new FileWriter("src/banking8/AutoSaveAccount.txt"))){
 			Iterator<Account> it = 
 						manager.getAccounts().iterator();
 			while (it.hasNext()) {

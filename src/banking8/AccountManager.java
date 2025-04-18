@@ -41,71 +41,36 @@ public class AccountManager {
 	    추후에 인스턴스 생성도 밖에서 한 문장으로만 할거임. */
 		Account acc = null ;
 		
+		System.out.println("계좌번호:");
+		iAccountNum = BankingSystemMain.scan.nextLine();
+		System.out.println("이름:");
+		iName = BankingSystemMain.scan.nextLine();
+		System.out.println("잔액:");
+		iBalance = BankingSystemMain.scan.nextInt();
+		System.out.println("기본이자%(정수형태로 입력):");
+		iInterest = BankingSystemMain.scan.nextInt();
+		BankingSystemMain.scan.nextLine();
+		
 		if (choice==1) {
-			
-			System.out.println("계좌번호:");
-			iAccountNum = BankingSystemMain.scan.nextLine();
-			System.out.println("이름:");
-			iName = BankingSystemMain.scan.nextLine();
-			System.out.println("잔액:");
-			iBalance = BankingSystemMain.scan.nextInt();
-			System.out.println("기본이자%(정수형태로 입력):");
-			iInterest = BankingSystemMain.scan.nextInt();
 			// 일반계좌 인스턴스 생성
 			acc =
 				new NormalAccount(iAccountNum, iName,
 									iBalance, iInterest);
 		}
 		else if (choice==2) {
-			
-			System.out.println("계좌번호:");
-			iAccountNum = BankingSystemMain.scan.nextLine();
-			System.out.println("이름:");
-			iName = BankingSystemMain.scan.nextLine();
-			System.out.println("잔액:");
-			iBalance = BankingSystemMain.scan.nextInt();
-			System.out.println("기본이자%(정수형태로 입력):");
-			iInterest = BankingSystemMain.scan.nextInt();
 			// 특판계좌 인스턴스 생성
 			acc =
 				new SpecialAccount(iAccountNum, iName,
 									iBalance, iInterest,0);
 		}
 		else {
-			System.out.println("계좌번호:");
-			iAccountNum = BankingSystemMain.scan.nextLine();
-			System.out.println("이름:");
-			iName = BankingSystemMain.scan.nextLine();
-			System.out.println("잔액:");
-			iBalance = BankingSystemMain.scan.nextInt();
-			System.out.println("기본이자%(정수형태로 입력):");
-			iInterest = BankingSystemMain.scan.nextInt();
-			
-			BankingSystemMain.scan.nextLine(); //줄바꿈오류땜에 추가
-			
 			System.out.println("신용등급(A,B,C등급):");
-			iCreditRate = BankingSystemMain.scan.nextLine();
+			iCreditRate = BankingSystemMain.scan.nextLine().trim().toUpperCase();
 			
-			if (iCreditRate.equalsIgnoreCase("A")) {
-				System.out.println("A");
-				iExtraInterest = ICustomDefine.A;
-				System.out.println(iExtraInterest);
-			}
-			else if (iCreditRate.equalsIgnoreCase("B")) {
-				iExtraInterest = ICustomDefine.B;
-			}
-			else if (iCreditRate.equalsIgnoreCase("C")) {
-				iExtraInterest = ICustomDefine.C;
-			}
-			else {
-				System.out.println("잘못입력하셨습니다. ");
-				return;
-			}
 			// 신용계좌 인스턴스 생성
 			acc = new HighCreditAccount
 						(iAccountNum, iName, 
-							iBalance, iInterest,
-							iExtraInterest, iCreditRate);
+							iBalance, iInterest, iCreditRate);
 		}
 		
 		//중복계좌 판단 후, 계좌생성 완료하기
@@ -126,7 +91,7 @@ public class AccountManager {
 			accounts.add(acc);
 			System.out.println("계좌개설이 완료되었습니다.");
 		}
-	};
+	}
 	
 	public void depositMoney() {  //입금
 		
@@ -264,7 +229,7 @@ public class AccountManager {
 		try {
 			ObjectOutputStream out =
 				new ObjectOutputStream(
-						new FileOutputStream("src/banking7/AccountInfo.obj")
+						new FileOutputStream("src/banking8/AccountInfo.obj")
 						);
 			out.writeObject(accounts);
 			System.out.println("AccountInfo.obj 파일로 저장되었습니다.");
@@ -281,7 +246,7 @@ public class AccountManager {
 		
 		try {ObjectInputStream in =
 				new ObjectInputStream(
-						new FileInputStream("src/banking7/AccountInfo.obj")
+						new FileInputStream("src/banking8/AccountInfo.obj")
 						);
 			accounts = (HashSet<Account>) in.readObject();
 			System.out.println("AccountInfo.obj 복원완료");

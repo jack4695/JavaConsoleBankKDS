@@ -1,19 +1,24 @@
-package banking8;
+package banking.jdbc;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Account implements Serializable {
+public class Account {
 	
+	int no;
 	String accountNum;
 	String name;
 	int balance;
+	int interest;
 	
 	//생성자
-	public Account(String accountNum, String name, int balance) {
+	public Account(int no, String accountNum,
+				String name, int balance, int interest) {
+		this.no = no;
 		this.accountNum = accountNum;
 		this.name = name;
 		this.balance = balance;
+		this.interest = interest;
 	}
 	
 	

@@ -2,29 +2,41 @@ package banking8;
 
 public class HighCreditAccount extends Account {
 	
-	int interest ; //기본이자
-	int extraInterest ; //추가이자
+	double interest ; //기본이자
 	String creditRate ; //신용등급
 	
 	
 	public HighCreditAccount(String accountNum, String name,
-		int balance, int interest,
-		int extraInterest, String creditRate) {
+		int balance, int interest, String creditRate) {
 		
 		super(accountNum, name, balance);
 		
 		this.interest = interest;
-		this.extraInterest = extraInterest;
-		this.creditRate = creditRate;
+		this.creditRate = creditRate.toUpperCase();
 		
 	}
 	
 	@Override
 	public int deposit(int money) {
-		
-		balance = (balance + (balance * interest)/100 
-						+ (balance * extraInterest)/100 + money); 
-	    return balance;   // 입금 후 잔액 반환
+		if(creditRate.equals("A")) {
+			balance = (int)(balance + (balance * (interest/100)
+					+ balance * (ICustomDefine.A/100)) + money); 
+		return balance;
+		}
+		else if(creditRate.equals("B")) {
+			System.out.println(ICustomDefine.B/100);
+			balance = (int)(balance + (balance * (interest/100)
+					+ balance * (ICustomDefine.B/100)) + money); 
+		return balance;
+		}
+		else if(creditRate.equals("C")) {
+			balance = (int)(balance + (balance * (interest/100) 
+					+ balance * (ICustomDefine.C/100)) + money); 
+		return balance;
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	@Override

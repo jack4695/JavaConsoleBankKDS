@@ -1,4 +1,4 @@
-package banking8;
+package banking.jdbc;
 
 public interface ICustomDefine {
 	
@@ -7,9 +7,8 @@ public interface ICustomDefine {
 		DEPOSIT = 2,
 		WITHDRAW = 3,
 		INQUIRE = 4,
-		REMOVE = 5,
-		SAVE = 6,
-		EXIT = 7;
+		SEARCH = 5,
+		EXIT = 6;
 	
 	//고객 등급 (추가이자)
 	double A = 7,
